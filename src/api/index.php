@@ -33,9 +33,9 @@
 		try {
 			require_once "cls/ApiException.php";
 			if (file_exists($pathToModule)){
-				require_once "cls/PDODatabase.php";
 				require_once "cls/Util.php";
 				require_once "cls/Request.php";
+				require_once "request/GuardedRequest.php";
 				require_once $pathToModule;
 				
 				$r = new $className;

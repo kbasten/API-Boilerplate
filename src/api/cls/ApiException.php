@@ -7,6 +7,7 @@
 	// 105: Database error
 	// 106: Value not possible for field
 	// 107: Cannot combine field
+	// 108: Access Denied
 
 	class ApiException extends Exception {
 	

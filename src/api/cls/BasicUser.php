@@ -1,7 +1,6 @@
 <?php
 class BasicUser{
 	private $ip;
-	private $user_id;
 	
 	protected function __construct(){
 		$this->ip = $_SERVER['REMOTE_ADDR'];

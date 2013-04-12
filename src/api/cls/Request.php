@@ -26,7 +26,7 @@
 			if ($this->success){
 				$msg = $this->result;
 			} else {
-				$msg = sprintf("Failed: ", $this->requestParams['name']);
+				$msg = sprintf("Failed: ", "henk");
 			}
 			return array($this->success, $msg);
 		}
