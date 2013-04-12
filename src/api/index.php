@@ -11,7 +11,7 @@
 	$urlParts = explode("/", $url);
 	
 	for ($i = 0; $i < count($urlParts); $i++){
-		$urlParts[$i] = preg_replace("/[^a-zA-Z0-9\s]/", "", $urlParts[$i]);
+		$urlParts[$i] = preg_replace("/[^a-zA-Z0-9]/", "", $urlParts[$i]);
 	}
 	
 	$className = ucfirst($urlParts[0]);
@@ -35,7 +35,7 @@
 			if (file_exists($pathToModule)){
 				require_once "cls/PDODatabase.php";
 				require_once "cls/Util.php";
-				require_once "cls/Request.php"; // interface
+				require_once "cls/Request.php";
 				require_once $pathToModule;
 				
 				$r = new $className;

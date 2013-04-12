@@ -1,12 +1,17 @@
 <?php
-	class ExampleRequest implements Request {
+	class ExampleRequest extends Request {
 	
 		private $result;
 		private $succeeded = false;
 		
 		private $required = array();
-
-		public function parseRequest($params) {
+		
+		/**
+		 * @Override
+		 */
+		public function __construct($db){
+			parent::__construct($db);
+			
 			$required = array(
 				array(
 					"key" 		=> "name",
@@ -14,6 +19,13 @@
 					"replace"	=> "/[^a-zA-Z]/"
 				)
 			);
+			$this->setRequestParams($required);
+		}
+		
+		/**
+		 * @Override
+		 */
+		public function parseRequest($params) {
 			
 			$this->required = Util::getRequired($params, $required);
 			
@@ -31,14 +43,5 @@
 			} else {
 				$this->succeeded = false;
 			}
-		}
-		
-		public function getResult(){
-			if ($this->succeeded){
-				$msg = $this->result;
-			} else {
-				$msg = sprintf("Failed to get data for '%s'", $this->required['name']);
-			}
-			return array($this->succeeded, $msg);
 		}
 	}
