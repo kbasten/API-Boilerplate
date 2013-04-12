@@ -8,8 +8,8 @@
 		
 		protected $requestParams = array();
 	
-		public function __construct($db){
-			$this->db = $db;
+		public function __construct(){
+			$this->db = new PDO(sprintf("mysql:host=%s;dbname=%s", DB_HOST, DB_NAME), DB_USER, DB_PASS);
 		}
 	
 		protected function getDB(){
@@ -26,7 +26,7 @@
 			if ($this->success){
 				$msg = $this->result;
 			} else {
-				$msg = sprintf("Failed: ", $this->required['name']);
+				$msg = sprintf("Failed: ", $this->requestParams['name']);
 			}
 			return array($this->success, $msg);
 		}

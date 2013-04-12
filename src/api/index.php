@@ -83,6 +83,7 @@
 		echo $msg;
 	}
 	
+	/**
 	$pdo = new PDO(sprintf("mysql:host=%s;dbname=%s", $host, $dbApiName), $username, $pass);
 	$sth = $pdo->prepare("INSERT INTO requests (ip, time, request, msg, success, exectime)
 				VALUES (?, UNIX_TIMESTAMP(), ?, ?, ?, ?)");
@@ -93,3 +94,4 @@
 	$sth->bindValue(5, $execTime, PDO::PARAM_INT);
 	$sth->execute();
 	$pdo = null;
+	 **/
