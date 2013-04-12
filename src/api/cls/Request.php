@@ -1,33 +1,15 @@
 <?php
 	abstract class Request {
 	
-		private $db;
-		
+		protected $db;
 		protected $result;
-		protected $success = false;
-		
 		protected $requestParams = array();
 	
-		public function __construct(){
+		public function __construct($request_params){
+			$this->requestParams = $request_params;
 			$this->db = new PDO(sprintf("mysql:host=%s;dbname=%s", DB_HOST, DB_NAME), DB_USER, DB_PASS);
-		}
-	
-		protected function getDB(){
-			return $this->db;
-		}
-		
-		protected function setRequestParams($p){
-			$this->requestParams = $p;
 		}
 		
 		public abstract function parseRequest($params);
-		
-		public function getResult(){
-			if ($this->success){
-				$msg = $this->result;
-			} else {
-				$msg = sprintf("Failed: ", "henk");
-			}
-			return array($this->success, $msg);
-		}
+		public abstract function getResult();
 	}

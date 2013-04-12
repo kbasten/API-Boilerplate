@@ -4,8 +4,6 @@
 		 * @Override
 		 */
 		public function __construct(){
-			parent::__construct();
-			
 			$required = array(
 				array(
 					"key" 		=> "name",
@@ -13,19 +11,33 @@
 					"replace"	=> "/[^a-zA-Z]/"
 				)
 			);
-			$this->setRequestParams($required);
+			
+			parent::__construct($required);
 		}
 		
 		/**
 		 * @Override
 		 */
 		public function parseRequest($params) {
-
-			if (!empty($res)){
-				$this->succeeded = true;
+			Util::getRequired($params, $this->requestParams);
+			
+			$this->success = true;
+			$this->result    = "aww yeah";
+			
+			if (true){
+				$this->success= true;
 				
 			} else {
-				$this->succeeded = false; 
+				$this->success = false; 
 			}
+		}
+		
+		public function getResult(){
+			if ($this->success){
+				$msg = $this->result;
+			} else {
+				$msg = sprintf("Failed: %s!", __CLASS__);
+			}
+			return array($this->success, $msg);
 		}
 	}
